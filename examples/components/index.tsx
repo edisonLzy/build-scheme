@@ -6,7 +6,7 @@ interface IWauCropper extends BaseWauCropper{
      * @component Form
      * @default 文本
      *  */
-    label: string
+    label?: string
 }
 
 export default function Cropper(props:IWauCropper) {

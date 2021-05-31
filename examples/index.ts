@@ -1,5 +1,5 @@
 import {buildScheme} from '../src'
-import fs from 'fs';
+import fs from 'fs-extra';
 import path from 'path'
 
 function run(){
@@ -8,6 +8,11 @@ function run(){
         filePath,
         componentName: 'Cropper'
     })
+    output(scheme)
+}
+function output(scheme:any,file = path.resolve(__dirname,'result.json')){
+    fs.ensureFileSync(file)
+    fs.writeJSON(file,scheme)
 }
 
 run()

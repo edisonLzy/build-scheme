@@ -1,1 +1,1 @@
-export const matchDesc = /\s*\@([a-zA-Z]+):?(.+)$/gmi
+export const matchDesc = /\s*\@([a-zA-Z]+):?([\w\W]+?)$/gmi

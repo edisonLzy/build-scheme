@@ -10,7 +10,11 @@ interface IBuildScheme {
 }
 interface Scheme {
   /**
-   * 组件名称 
+   * 属性名
+   */
+  prop:string
+  /**
+   * jsx组件名称 
    * @example Form.item
    */
   tag: string
@@ -18,11 +22,11 @@ interface Scheme {
    * 所属组件
    * @example Form
    */
-  type: string
+  component: string
   /**
    * 默认值
    */
-  defaultValue:string
+  defaultValue: string
   /**
    * 是否必须
    */
@@ -30,56 +34,75 @@ interface Scheme {
   /**
    * 其他的属性
    */
-  [key:string]:unknown
-} 
+  [key: string]: unknown
+}
 
 /**
  * 处理 description 
  */
-function resolveDesc(desc:string){
-   console.log(desc.match(matchDesc));
+function resolveDesc(desc: string) {
+  const macths = desc.match(matchDesc)
+  if (macths) {
+    return macths
+      .map(it => it.trim())
+      .reduce((acc, cur) => {
+        const [_prop, value] = cur.split(' ')
+        const [, prop] = _prop.split('@')
+        acc[prop] = value;
+        return acc
+      }, {} as {
+        [prop: string]: string
+      })
+  } else {
+    return {}
+  }
 }
 /**
  * 处理所有的属性
  * @param docs 
  * @returns 
  */
-function resolveProps(props:Props){
-   const keys = Object.keys(props);   
-   return keys.map(key=>{
-      const {description,defaultValue,required} = props[key];
-      const _defaultValue = defaultValue === null ? '':defaultValue.value
-      const otherPropsInDesc = resolveDesc(description)
-      return {
-        defaultValue: _defaultValue,
-        required: required
-      }
-   })
-  //  return    
-} 
+function resolveProps(props: Props) {
+  const keys = Object.keys(props);
+  const arr =  keys.map(key => {
+    const raw = props[key];
+    const { description, defaultValue, required,name } = raw;
+    const _defaultValue = defaultValue === null ? '' : defaultValue.value
+    const {component,description:_description,tag} = resolveDesc(description) 
+    return {
+      defaultValue: _defaultValue,
+      prop:name,
+      required: required,
+      component,
+      description:_description,
+      tag,
+      _raw:raw
+    }
+  })   
+  return arr;  
+}
 /**
  * 处理所有的ComponentDoc
  */
-function resolveDocs(docs:ComponentDoc[]){
- return docs.reduce((acc,doc)=>{     
-    resolveProps(doc.props)
-    //  acc[displayName] =
-     return acc
- },{} as {
-   [component:string]:Scheme[]
- })
+function resolveDocs(docs: ComponentDoc[]) {
+  return docs.reduce((acc,{props,displayName}) => {
+     acc[displayName] = resolveProps(props)
+    return acc
+  }, {} as {
+    [component: string]: Scheme[]
+  })
 }
-export function buildScheme ({ filePath,componentName }: IBuildScheme,) {
+export function buildScheme({ filePath, componentName }: IBuildScheme,) {
   const isExist = fs.existsSync(filePath)
   if (!isExist) throw Error(`${filePath} not found!`)
-  const docs = parse(filePath,{
+  const docs = parse(filePath, {
     savePropValueAsString: true,
-    shouldExtractValuesFromUnion:true,
-    shouldExtractLiteralValuesFromEnum:true,
-    componentNameResolver: source => {      
+    shouldExtractValuesFromUnion: true,
+    shouldExtractLiteralValuesFromEnum: true,
+    componentNameResolver: source => {
       // use parsed component name from remark pipeline as default export's displayName
       return DEFAULT_EXPORTS.includes(source.getName()) ? componentName : undefined;
     },
   })
-  const result = resolveDocs(docs)
+  return resolveDocs(docs)  
 }
