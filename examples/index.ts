@@ -7,9 +7,7 @@ function run(){
     const scheme =  buildScheme({
         filePath,
         componentName: 'Cropper'
-    })
-    console.log((scheme.Cropper[0] as any)._raw.declarations);
-    
+    }) 
     // output(scheme)
 }
 function output(scheme:any,file = path.resolve(__dirname,'result.json')){

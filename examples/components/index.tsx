@@ -1,6 +1,5 @@
 import {BaseWauCropper} from './types'
-
-interface P {
+interface P extends BaseWauCropper{
     name:string
 }
 
