@@ -12,5 +12,8 @@ export const SUPPORT_PROPS = [
    'tag',
    'component', 
    'description'
-]
+] as const
   
+type ArrayToUnion<T> =  T extends readonly (infer P)[] ?  P :null
+
+export type SUPPORT_KEY  = ArrayToUnion<typeof SUPPORT_PROPS>

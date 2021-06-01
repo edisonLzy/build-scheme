@@ -10,19 +10,52 @@
             "defaultValue": {
                 "value": "文本"
             },
-            "description": "@description 文本描述\n@tag Form.Item\n@component Form",
+            "description": "",
             "name": "label",
             "parent": {
-                "fileName": "build-scheme/examples/components/index.tsx",
+                "fileName": "buildScheme/examples/components/index.tsx",
                 "name": "IWauCropper"
             },
             "declarations": [{
-                "fileName": "build-scheme/examples/components/index.tsx",
+                "fileName": "buildScheme/examples/components/index.tsx",
                 "name": "IWauCropper"
             }],
             "required": false,
             "type": {
                 "name": "string"
+            },
+            "tags": {
+                "description": "文本描述",
+                "tag": "Form.Item",
+                "component": "Form",
+                "default": "文本"
+            }
+        }
+    }, {
+        "defaultValue": "",
+        "prop": "style",
+        "required": true,
+        "description": "文本描述",
+        "tag": "Form.Item",
+        "_raw": {
+            "defaultValue": null,
+            "description": "",
+            "name": "style",
+            "parent": {
+                "fileName": "buildScheme/examples/components/index.tsx",
+                "name": "IWauCropper"
+            },
+            "declarations": [{
+                "fileName": "buildScheme/examples/components/index.tsx",
+                "name": "IWauCropper"
+            }],
+            "required": true,
+            "type": {
+                "name": "P"
+            },
+            "tags": {
+                "description": "文本描述",
+                "tag": "Form.Item"
             }
         }
     }, {
@@ -34,17 +67,18 @@
             "description": "prop1 description",
             "name": "src",
             "parent": {
-                "fileName": "build-scheme/examples/components/types.ts",
+                "fileName": "buildScheme/examples/components/types.ts",
                 "name": "BaseWauCropper"
             },
             "declarations": [{
-                "fileName": "build-scheme/examples/components/types.ts",
+                "fileName": "buildScheme/examples/components/types.ts",
                 "name": "BaseWauCropper"
             }],
             "required": true,
             "type": {
                 "name": "string"
-            }
+            },
+            "tags": {}
         }
     }, {
         "defaultValue": "",
@@ -55,11 +89,11 @@
             "description": "prop1 description",
             "name": "type",
             "parent": {
-                "fileName": "build-scheme/examples/components/types.ts",
+                "fileName": "buildScheme/examples/components/types.ts",
                 "name": "BaseWauCropper"
             },
             "declarations": [{
-                "fileName": "build-scheme/examples/components/types.ts",
+                "fileName": "buildScheme/examples/components/types.ts",
                 "name": "BaseWauCropper"
             }],
             "required": true,
@@ -75,7 +109,8 @@
                 }, {
                     "value": "\"auto\""
                 }]
-            }
+            },
+            "tags": {}
         }
     }],
     "Input": [{
@@ -87,13 +122,14 @@
             "description": "",
             "name": "name",
             "declarations": [{
-                "fileName": "build-scheme/examples/components/index.tsx",
+                "fileName": "buildScheme/examples/components/index.tsx",
                 "name": "TypeLiteral"
             }],
             "required": true,
             "type": {
                 "name": "string"
-            }
+            },
+            "tags": {}
         }
     }]
 }

@@ -8,7 +8,9 @@ function run(){
         filePath,
         componentName: 'Cropper'
     })
-    output(scheme)
+    console.log((scheme.Cropper[0] as any)._raw.declarations);
+    
+    // output(scheme)
 }
 function output(scheme:any,file = path.resolve(__dirname,'result.json')){
     fs.ensureFileSync(file)

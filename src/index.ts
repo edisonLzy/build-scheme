@@ -1,6 +1,6 @@
 import fs from 'fs-extra'
-import { ComponentDoc, parse, Props } from 'react-docgen-typescript'
-import { DEFAULT_EXPORTS } from './constant'
+import { ComponentDoc, parse, Props,withCompilerOptions } from 'react-docgen-typescript'
+import { DEFAULT_EXPORTS,SUPPORT_KEY} from './constant'
 import { matchDesc } from './regExp';
 
 interface IBuildScheme {
@@ -37,7 +37,7 @@ interface Scheme {
 }
 
 /**
- * 处理 description 
+ * 解析 JSDoc
  */
 function resolveDesc(desc: string) {
   const macths = desc.match(matchDesc)
@@ -63,15 +63,16 @@ function resolveProps(props: Props) {
   const keys = Object.keys(props);
   const arr =  keys.map(key => {
     const raw = props[key];
-    const { description, defaultValue, required,name } = raw;
-    const _defaultValue = defaultValue === null ? '' : defaultValue.value
-    const {component,description:_description,tag} = resolveDesc(description) 
+    const { required,name,tags } = raw;
+    const {component,description,tag,default:defaultValue = ''} = tags as SUPPORT_KEY & {
+      [key:string]:string
+    }
     return {
-      defaultValue: _defaultValue,
+      defaultValue:defaultValue,
       prop:name,
       required: required,
       component,
-      description:_description,
+      description,
       tag,
       _raw:raw
     }
@@ -96,6 +97,7 @@ export function buildScheme({ filePath, componentName }: IBuildScheme) {
     savePropValueAsString: true,
     shouldExtractValuesFromUnion: true,
     shouldExtractLiteralValuesFromEnum: true,
+    shouldIncludePropTagMap:true,
     componentNameResolver: source => {
       // use parsed component name from remark pipeline as default export's displayName
       return DEFAULT_EXPORTS.includes(source.getName()) ? componentName : undefined;
