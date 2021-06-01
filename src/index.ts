@@ -1,7 +1,6 @@
-import { DEFAULT_EXPORTS } from './constant'
-import { ComponentDoc, parse, Props, withCompilerOptions } from 'react-docgen-typescript'
-import { ParserOptions } from 'react-docgen-typescript'
 import fs from 'fs-extra'
+import { ComponentDoc, parse, Props } from 'react-docgen-typescript'
+import { DEFAULT_EXPORTS } from './constant'
 import { matchDesc } from './regExp';
 
 interface IBuildScheme {
@@ -59,8 +58,6 @@ function resolveDesc(desc: string) {
 }
 /**
  * 处理所有的属性
- * @param docs 
- * @returns 
  */
 function resolveProps(props: Props) {
   const keys = Object.keys(props);
@@ -92,7 +89,7 @@ function resolveDocs(docs: ComponentDoc[]) {
     [component: string]: Scheme[]
   })
 }
-export function buildScheme({ filePath, componentName }: IBuildScheme,) {
+export function buildScheme({ filePath, componentName }: IBuildScheme) {
   const isExist = fs.existsSync(filePath)
   if (!isExist) throw Error(`${filePath} not found!`)
   const docs = parse(filePath, {
