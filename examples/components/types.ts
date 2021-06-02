@@ -1,6 +1,9 @@
+interface C {
+   name: string
+}
 export interface BaseWauCropper {
     /** prop1 description */
-    src: string
+    src: C
     /** 
      * prop1 description */
     type: RatioType

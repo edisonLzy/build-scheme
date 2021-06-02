@@ -1,6 +1,10 @@
 import {BaseWauCropper} from './types'
 
-interface P {
+interface P{
+     /**
+     * @description P
+     * @tag Form
+     */
     name:string
 }
 
@@ -10,6 +14,11 @@ interface IWauCropper{
      * @tag Form.Item
      */
     style:  P
+    
+    /**
+     * @tag Radio
+     */
+    size: 'large'| 'small'
 }
 
 export default function Cropper(props:IWauCropper) {
