@@ -1,43 +1,75 @@
 {
     "Cropper": [{
-        "defaultValue": "文本",
-        "prop": "label",
-        "required": false,
-        "component": "Form",
-        "description": "文本描述",
-        "tag": "Form.Item",
-        "_raw": {
-            "defaultValue": {
-                "value": "文本"
-            },
-            "description": "",
-            "name": "label",
-            "parent": {
-                "fileName": "buildScheme/examples/components/index.tsx",
-                "name": "IWauCropper"
-            },
-            "declarations": [{
-                "fileName": "buildScheme/examples/components/index.tsx",
-                "name": "IWauCropper"
-            }],
-            "required": false,
-            "type": {
-                "name": "string"
-            },
-            "tags": {
-                "description": "文本描述",
-                "tag": "Form.Item",
-                "component": "Form",
-                "default": "文本"
-            }
-        }
-    }, {
         "defaultValue": "",
         "prop": "style",
         "required": true,
+        "component": "Form",
         "description": "文本描述",
         "tag": "Form.Item",
+        "enumValue": [],
+        "child": [{
+            "defaultValue": "lee",
+            "prop": "name",
+            "required": true,
+            "component": "Input",
+            "description": "P",
+            "tag": "Input",
+            "enumValue": [],
+            "child": [],
+            "_raw": {
+                "defaultValue": {
+                    "value": "lee"
+                },
+                "description": "",
+                "name": "name",
+                "parent": {
+                    "fileName": "buildScheme/examples/components/index.tsx",
+                    "name": "P"
+                },
+                "declarations": [{
+                    "fileName": "buildScheme/examples/components/index.tsx",
+                    "name": "P"
+                }],
+                "required": true,
+                "type": {
+                    "name": "string"
+                },
+                "tags": {
+                    "description": "P",
+                    "tag": "Input",
+                    "component": "Input",
+                    "default": "lee"
+                }
+            }
+        }],
         "_raw": {
+            "sub": {
+                "name": {
+                    "defaultValue": {
+                        "value": "lee"
+                    },
+                    "description": "",
+                    "name": "name",
+                    "parent": {
+                        "fileName": "buildScheme/examples/components/index.tsx",
+                        "name": "P"
+                    },
+                    "declarations": [{
+                        "fileName": "buildScheme/examples/components/index.tsx",
+                        "name": "P"
+                    }],
+                    "required": true,
+                    "type": {
+                        "name": "string"
+                    },
+                    "tags": {
+                        "description": "P",
+                        "tag": "Input",
+                        "component": "Input",
+                        "default": "lee"
+                    }
+                }
+            },
             "defaultValue": null,
             "description": "",
             "name": "style",
@@ -55,81 +87,36 @@
             },
             "tags": {
                 "description": "文本描述",
-                "tag": "Form.Item"
+                "tag": "Form.Item",
+                "component": "Form"
             }
         }
     }, {
         "defaultValue": "",
-        "prop": "src",
+        "prop": "size",
         "required": true,
-        "_raw": {
-            "defaultValue": null,
-            "description": "prop1 description",
-            "name": "src",
-            "parent": {
-                "fileName": "buildScheme/examples/components/types.ts",
-                "name": "BaseWauCropper"
-            },
-            "declarations": [{
-                "fileName": "buildScheme/examples/components/types.ts",
-                "name": "BaseWauCropper"
-            }],
-            "required": true,
-            "type": {
-                "name": "string"
-            },
-            "tags": {}
-        }
-    }, {
-        "defaultValue": "",
-        "prop": "type",
-        "required": true,
-        "_raw": {
-            "defaultValue": null,
-            "description": "prop1 description",
-            "name": "type",
-            "parent": {
-                "fileName": "buildScheme/examples/components/types.ts",
-                "name": "BaseWauCropper"
-            },
-            "declarations": [{
-                "fileName": "buildScheme/examples/components/types.ts",
-                "name": "BaseWauCropper"
-            }],
-            "required": true,
-            "type": {
-                "name": "enum",
-                "raw": "RatioType",
-                "value": [{
-                    "value": "\"16:9\""
-                }, {
-                    "value": "\"4:3\""
-                }, {
-                    "value": "\"1:1\""
-                }, {
-                    "value": "\"auto\""
-                }]
-            },
-            "tags": {}
-        }
-    }],
-    "Input": [{
-        "defaultValue": "",
-        "prop": "name",
-        "required": true,
+        "tag": "Radio",
+        "enumValue": [],
+        "child": [],
         "_raw": {
             "defaultValue": null,
             "description": "",
-            "name": "name",
+            "name": "size",
+            "parent": {
+                "fileName": "buildScheme/examples/components/index.tsx",
+                "name": "IWauCropper"
+            },
             "declarations": [{
                 "fileName": "buildScheme/examples/components/index.tsx",
-                "name": "TypeLiteral"
+                "name": "IWauCropper"
             }],
             "required": true,
             "type": {
-                "name": "string"
+                "name": "CSSProperties"
             },
-            "tags": {}
+            "tags": {
+                "tag": "Radio"
+            }
         }
     }]
 }
